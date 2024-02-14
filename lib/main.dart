@@ -29,36 +29,79 @@ class Inicio extends StatefulWidget {
 }
 
 class _InicioState extends State<Inicio> {
+  TextEditingController controladorEdit = TextEditingController();
+  bool botonVisible = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // estructura básica de una app
-      // estructura de una app movil
-      appBar: AppBar(
-        title: Text("Navegacion"),
-      ),
-      body: Container(
-        width: MediaQuery.of(context).size.width,
-        height: MediaQuery.of(context).size.height,
-        child: Container(
-          color: Colors.blue, // Color de fondo del contenedor
+        // estructura básica de una app
+        // estructura de una app movil
+        appBar: AppBar(
+          title: Text("Navegacion"),
+        ),
+        body: body());
+  }
 
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text("Principal"),
-              ElevatedButton(
-                  onPressed: () => {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => Pagina2("holas")))
-                      },
-                  child: Text("Ir otra página"))
-            ],
-          ),
+  Widget body() {
+    return Container(
+      width: MediaQuery.of(context).size.width,
+      height: MediaQuery.of(context).size.height,
+      child: Container(
+        color: Colors.blue, // Color de fondo del contenedor
+
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text("Principal"),
+            cajaTexto(controladorEdit),
+            boton("Siguiente página", controladorEdit,botonVisible)
+          ],
         ),
       ),
     );
   }
+
+  Widget cajaTexto(TextEditingController controlador) {
+    return Container(
+        width: 200.0,
+        child: TextField(
+          controller: controlador,
+          onChanged: (texto) {
+            setState(() {
+              if (texto.isEmpty)
+                botonVisible = false;
+              else
+                botonVisible = true;
+            });
+          },
+
+          autofocus: true,
+          // icono del botón
+          autocorrect: true,
+          maxLength: 20,
+          // passowrd
+          style: TextStyle(color: Colors.red),
+          decoration: InputDecoration(
+            hintText: "Introducir",
+            hintStyle: TextStyle(color: Colors.green),
+            // helperText: "Introducir datos",
+          ),
+        ));
+  }
+
+  Widget boton(String texto, TextEditingController controlador,bool visible) {
+    return Visibility(
+        child: ElevatedButton(
+            onPressed: () => {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => Pagina2(controlador.text)))
+                },
+            child: Text(texto)),
+        visible: visible);
+  }
+
+  ///
 }
