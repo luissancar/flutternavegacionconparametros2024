@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 
 class Pagina2 extends StatelessWidget {
-
+//
   final String textoEnviado;
-  const Pagina2(this.textoEnviado,{super.key});
+
+  const Pagina2(this.textoEnviado, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +24,7 @@ class Pagina2 extends StatelessWidget {
                       textoEnviado,
                       textAlign: TextAlign.center,
                       style:
-                      TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+                          TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
                     )),
                 ElevatedButton(
                     onPressed: () => {Navigator.pop(context)},

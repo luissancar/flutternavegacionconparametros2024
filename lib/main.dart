@@ -49,9 +49,11 @@ class _InicioState extends State<Inicio> {
               Text("Principal"),
               ElevatedButton(
                   onPressed: () => {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => Pagina2("holas")))
-                  },
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => Pagina2("holas")))
+                      },
                   child: Text("Ir otra página"))
             ],
           ),
